@@ -1,7 +1,4 @@
-﻿
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace ExpressVoitures.Models.Entities
+﻿namespace ExpressVoitures.Models.Entities
 {
     public class Car
     {
@@ -9,7 +6,7 @@ namespace ExpressVoitures.Models.Entities
         public int YearId { get; set; }
         public int BrandId { get; set; }
         public int ModelId { get; set; }
-        public string FinitionId { get; set; }
+        public int FinitionId { get; set; }
         public DateTime DateOfPurchase { get; set; }
         public decimal PurchasePrice { get; set; }
         public bool Repair { get; set; }

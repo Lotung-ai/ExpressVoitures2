@@ -22,6 +22,132 @@ namespace ExpressVoitures.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfAvailabilityForSale")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfPurchase")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfSale")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FinitionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Repair")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal?>("RepairPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("YearId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("FinitionId");
+
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("YearId");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Finition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Finitions");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Modele", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Modeles");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Year", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Years");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -224,6 +350,52 @@ namespace ExpressVoitures.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Car", b =>
+                {
+                    b.HasOne("ExpressVoitures.Models.Entities.Brand", "Brand")
+                        .WithMany("Cars")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpressVoitures.Models.Entities.Finition", "Finition")
+                        .WithMany("Cars")
+                        .HasForeignKey("FinitionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpressVoitures.Models.Entities.Modele", "Modele")
+                        .WithMany("Cars")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ExpressVoitures.Models.Entities.Year", "Year")
+                        .WithMany("Cars")
+                        .HasForeignKey("YearId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Finition");
+
+                    b.Navigation("Modele");
+
+                    b.Navigation("Year");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Modele", b =>
+                {
+                    b.HasOne("ExpressVoitures.Models.Entities.Brand", "Brand")
+                        .WithMany("Modeles")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +445,28 @@ namespace ExpressVoitures.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Brand", b =>
+                {
+                    b.Navigation("Cars");
+
+                    b.Navigation("Modeles");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Finition", b =>
+                {
+                    b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Modele", b =>
+                {
+                    b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("ExpressVoitures.Models.Entities.Year", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

@@ -35,30 +35,43 @@ namespace ExpressVoitures.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Brand>()
                .HasMany(b => b.Modeles)
                .WithOne(cm => cm.Brand)
-               .HasForeignKey(cm => cm.BrandId);
+               .HasForeignKey(cm => cm.BrandId)
+            .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Modele>()
                 .HasMany(cm => cm.Cars)
                 .WithOne(c => c.Modele)
-                .HasForeignKey(c => c.ModelId);
+                .HasForeignKey(c => c.ModelId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Car>()
                 .HasOne(c => c.Brand)
                 .WithMany(b => b.Cars)
-                .HasForeignKey(c => c.BrandId);
+                .HasForeignKey(c => c.BrandId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Car>()
                .HasOne(c => c.Year)
                .WithMany(y => y.Cars)
-               .HasForeignKey(c => c.YearId);
+               .HasForeignKey(c => c.YearId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Car>()
+               .HasOne(c => c.Modele)
+               .WithMany(y => y.Cars)
+               .HasForeignKey(c => c.ModelId)
+               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Car>()
                 .HasOne(c => c.Finition)
                 .WithMany(f => f.Cars)
-                .HasForeignKey(c => c.FinitionId);
+                .HasForeignKey(c => c.FinitionId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

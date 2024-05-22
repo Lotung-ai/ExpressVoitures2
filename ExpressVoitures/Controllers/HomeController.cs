@@ -18,6 +18,11 @@ namespace ExpressVoitures.Controllers
             return View();
         }
 
+        public IActionResult Cars()
+        {
+            return RedirectToAction("Index", "Cars");
+        }
+
         public IActionResult Privacy()
         {
             return View();

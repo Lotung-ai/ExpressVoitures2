@@ -1,0 +1,92 @@
+﻿@model ExpressVoitures.Models.ViewModels.CarViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>Car</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="YearId" class="control-label"></label>
+                    <select asp-for="YearId" class="form-control" asp-items="ViewBag.YearId"></select>
+                    <span asp-validation-for="YearId" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="BrandId" class="control-label"></label>
+                    <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="ModelId" class="control-label"></label>
+                    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelId"></select>
+                    <span asp-validation-for="ModelId" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="FinitionId" class="control-label"></label>
+                    <select asp-for="FinitionId" class="form-control" asp-items="ViewBag.FinitionId"></select>
+                    <span asp-validation-for="FinitionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfPurchase" class="control-label"></label>
+                <input asp-for="DateOfPurchase" class="form-control" />
+                <span asp-validation-for="DateOfPurchase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchasePrice" class="control-label"></label>
+                <input asp-for="PurchasePrice" class="form-control" />
+                <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Repair" /> @Html.DisplayNameFor(model => model.Repair)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepairPrice" class="control-label"></label>
+                <input asp-for="RepairPrice" class="form-control" />
+                <span asp-validation-for="RepairPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfAvailabilityForSale" class="control-label"></label>
+                <input asp-for="DateOfAvailabilityForSale" class="form-control" />
+                <span asp-validation-for="DateOfAvailabilityForSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellingPrice" class="control-label"></label>
+                <input asp-for="SellingPrice" class="form-control" />
+                <span asp-validation-for="SellingPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfSale" class="control-label"></label>
+                <input asp-for="DateOfSale" class="form-control" />
+                <span asp-validation-for="DateOfSale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

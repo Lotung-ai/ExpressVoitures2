@@ -2,6 +2,7 @@ using ExpressVoitures.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor;
+using ExpressVoitures.Models.Repositories;
 
 namespace ExpressVoitures
 {
@@ -20,6 +21,11 @@ namespace ExpressVoitures
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddScoped<IModeleRepository, ModeleRepository>();
+            builder.Services.AddScoped<IFinitionRepository, FinitionRepository>();
+            builder.Services.AddScoped<IYearRepository, YearRepository>();
 
             var app = builder.Build();
 

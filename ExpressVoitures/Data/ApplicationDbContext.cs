@@ -72,6 +72,9 @@ namespace ExpressVoitures.Data
                 .WithMany(f => f.Cars)
                 .HasForeignKey(c => c.FinitionId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Year>().HasData(new Year() { Value = 1990 ,Id=1});
         }
+        
     }
 }

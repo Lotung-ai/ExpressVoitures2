@@ -11,22 +11,22 @@ namespace ExpressVoitures.Models.ViewModels
          [Required]
          [Display(Name = "Year")]
          public int YearId { get; set; }
-         public List<SelectListItem> Years { get; set; }
+         public List<SelectListItem>? Years { get; set; }
 
          [Required]
          [Display(Name = "Brand")]
          public int BrandId { get; set; }
-        public List<SelectListItem> Brands { get; set; }
+        public List<SelectListItem>? Brands { get; set; }
 
          [Required]
          [Display(Name = "Model")]
          public int ModelId { get; set; }
-        public List<SelectListItem> Models { get; set; }
+        public List<SelectListItem>? Models { get; set; }
 
          [Required]
          [Display(Name = "Finition")]
          public int FinitionId { get; set; }
-         public List<SelectListItem> Finitions { get; set; }
+         public List<SelectListItem>? Finitions { get; set; }
 
          [Required]
          [DataType(DataType.Date)]

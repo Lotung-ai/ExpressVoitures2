@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpressVoitures.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240521222333_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20240522174400_newMigration")]
+    partial class newMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,6 +149,13 @@ namespace ExpressVoitures.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Years");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Value = 1990
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

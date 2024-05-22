@@ -146,6 +146,13 @@ namespace ExpressVoitures.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Years");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Value = 1990
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

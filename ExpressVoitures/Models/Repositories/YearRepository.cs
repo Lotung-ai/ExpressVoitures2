@@ -25,18 +25,6 @@ namespace ExpressVoitures.Models.Repositories
                 })
                 .ToList();
 
-            // Ajouter une option par défaut
-            years.Insert(0, new SelectListItem
-            {
-                Value = "0",
-                Text = "1900"
-            });
-            years.Insert(1, new SelectListItem
-            {
-                Value = "1",
-                Text = "1901"
-            });
-
             return years;
         }
         public async Task<Year> GetYear(int id)

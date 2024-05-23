@@ -37,6 +37,33 @@ namespace ExpressVoitures.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Mazda"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Ford"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Toyota"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Honda"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "BMW"
+                        });
                 });
 
             modelBuilder.Entity("ExpressVoitures.Models.Entities.Car", b =>
@@ -108,6 +135,28 @@ namespace ExpressVoitures.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Finitions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Base"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Sport"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Luxury"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Premium"
+                        });
                 });
 
             modelBuilder.Entity("ExpressVoitures.Models.Entities.Modele", b =>
@@ -130,6 +179,32 @@ namespace ExpressVoitures.Data.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Modeles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandId = 2,
+                            Name = "Focus"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandId = 2,
+                            Name = "Mustang"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BrandId = 3,
+                            Name = "Corolla"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BrandId = 3,
+                            Name = "Camry"
+                        });
                 });
 
             modelBuilder.Entity("ExpressVoitures.Models.Entities.Year", b =>
@@ -152,6 +227,176 @@ namespace ExpressVoitures.Data.Migrations
                         {
                             Id = 1,
                             Value = 1990
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Value = 1991
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Value = 1992
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Value = 1993
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Value = 1994
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Value = 1995
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Value = 1996
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Value = 1997
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Value = 1998
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Value = 1999
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Value = 2000
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Value = 2001
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Value = 2002
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Value = 2003
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Value = 2004
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Value = 2005
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Value = 2006
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Value = 2007
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Value = 2008
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Value = 2009
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Value = 2010
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Value = 2011
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Value = 2012
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Value = 2013
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Value = 2014
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Value = 2015
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Value = 2016
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Value = 2017
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Value = 2018
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Value = 2019
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Value = 2020
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Value = 2021
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Value = 2022
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Value = 2023
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Value = 2024
                         });
                 });
 

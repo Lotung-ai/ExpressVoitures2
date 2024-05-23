@@ -1,7 +1,7 @@
 ﻿@model ExpressVoitures.Models.Entities.Car
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -32,7 +32,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="ModelId" class="control-label"></label>
-                <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelId"></select>
+              <!-- <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelId"></select>-->
+                    <select asp-for="ModelId" class="form-control" id="ModelId">
+                        <option value="">-- Select Model --</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
                 <span asp-validation-for="ModelId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -88,6 +92,29 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+            $(document).ready(function () {
+                $('#BrandId').change(function () {
+                    var brandId = $(this).val();
+                    if (brandId) {
+                        $.ajax({
+                            url: '@Url.Action("GetModelsByBrand", "Cars")',
+                            data: { brandId: brandId },
+                            success: function (data) {
+                                var modelSelect = $('#ModelId');
+                                modelSelect.empty();
+                                $.each(data, function (index, item) {
+                                    modelSelect.append($('<option></option>').val(item.value).text(item.text));
+                                });
+                            }
+                        });
+                    } else {
+                        $('#ModelId').empty();
+                        $('#ModelId').append($('<option></option>').val("").text("-- Select Model --"));
+                    }
+                });
+            });
+        </script>
 }
 </body>
 </html>

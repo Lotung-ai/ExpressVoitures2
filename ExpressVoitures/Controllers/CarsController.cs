@@ -84,13 +84,26 @@ namespace ExpressVoitures.Controllers
             
             
         }
+        [HttpGet]
+        public JsonResult GetModelsByBrand(int brandId)
+        {
+            var models = _modeleRepository.GetModelsByBrandId(brandId)
+                            .Select(m => new SelectListItem
+                            {
+                                Value = m.Id.ToString(),
+                                Text = m.Name
+                            })
+                            .ToList();
+
+            return Json(models);
+        }
         private void PopulateDropdownLists()
         {
             ViewData["BrandId"] = _brandRepository.GetBrands();
 
             ViewData["FinitionId"] = _finitionRepository.GetFinitions();
 
-            ViewData["ModelId"] = _modeleRepository.GetModels();
+          //  ViewData["ModelId"] = _modeleRepository.GetModels();
 
             ViewData["YearId"] = _yearRepository.GetYears();
         }
@@ -155,10 +168,7 @@ namespace ExpressVoitures.Controllers
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", car.BrandId);
-            ViewData["FinitionId"] = new SelectList(_context.Finitions, "Id", "Id", car.FinitionId);
-            ViewData["ModelId"] = new SelectList(_context.Modeles, "Id", "Id", car.ModelId);
-            ViewData["YearId"] = new SelectList(_context.Years, "Id", "Id", car.YearId);
+            PopulateDropdownLists();
             return View(car);
         }
 
@@ -194,10 +204,9 @@ namespace ExpressVoitures.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", car.BrandId);
-            ViewData["FinitionId"] = new SelectList(_context.Finitions, "Id", "Id", car.FinitionId);
-            ViewData["ModelId"] = new SelectList(_context.Modeles, "Id", "Id", car.ModelId);
-            ViewData["YearId"] = new SelectList(_context.Years, "Id", "Id", car.YearId);
+
+            PopulateDropdownLists();
+
             return View(car);
         }
 

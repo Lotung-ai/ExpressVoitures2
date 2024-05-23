@@ -26,21 +26,14 @@ namespace ExpressVoitures.Models.Repositories
                     })
                     .ToList();
 
-            // Ajouter une option par défaut
-            models.Insert(0, new SelectListItem
-                {
-                    Value = "0",
-                    Text = "Miata"
-                });
-            models.Insert(1, new SelectListItem
-                {
-                    Value = "1",
-                    Text = "Liberty"
-                });
-
                 return models;
             }
-            public async Task<Modele> GetModele(int id)
+        public IEnumerable<Modele> GetModelsByBrandId(int brandId)
+        {
+            return _context.Modeles.Where(m => m.BrandId == brandId).ToList();
+        }
+
+        public async Task<Modele> GetModele(int id)
             {
                 var modele = await _context.Modeles.SingleOrDefaultAsync(m => m.Id == id);
                 return modele;

@@ -25,17 +25,7 @@ namespace ExpressVoitures.Models.Repositories
                 })
                 .ToList();
 
-            // Ajouter une option par défaut
-            brands.Insert(0, new SelectListItem
-            {
-                Value = "0",
-                Text = "Mazda"
-            });
-            brands.Insert(1, new SelectListItem
-            {
-                Value = "1",
-                Text = "Ford"
-            });
+      
 
             return brands;
         }

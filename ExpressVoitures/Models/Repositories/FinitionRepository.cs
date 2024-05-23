@@ -26,18 +26,6 @@ namespace ExpressVoitures.Models.Repositories
                 })
                 .ToList();
 
-            // Ajouter une option par défaut
-            finitions.Insert(0, new SelectListItem
-            {
-                Value = "0",
-                Text = "LE"
-            });
-            finitions.Insert(1, new SelectListItem
-            {
-                Value = "1",
-                Text = "Sport"
-            });
-
             return finitions;
         }
         public async Task<Finition> GetFinition(int id)

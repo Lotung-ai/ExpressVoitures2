@@ -1,7 +1,12 @@
-﻿namespace ExpressVoitures.Models.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace ExpressVoitures.Models.Entities
 {
     public class Car
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int YearId { get; set; }
         public int BrandId { get; set; }

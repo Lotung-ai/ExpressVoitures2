@@ -1,77 +1,63 @@
 ﻿using ExpressVoitures.Models.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ExpressVoitures.Models.ViewModels
 {
     public class CarViewModel
     {
-         public int Id { get; set; }
+        
+        public int Id { get; set; }
 
          [Required]
-         [Display(Name = "Year")]
+         [Display(Name = "Année :")]
          public int YearId { get; set; }
          public List<SelectListItem>? Years { get; set; }
 
          [Required]
-         [Display(Name = "Brand")]
+         [Display(Name = "Marque :")]
          public int BrandId { get; set; }
         public List<SelectListItem>? Brands { get; set; }
 
          [Required]
-         [Display(Name = "Model")]
+         [Display(Name = "Modèle :")]
          public int ModelId { get; set; }
         public List<SelectListItem>? Models { get; set; }
 
          [Required]
-         [Display(Name = "Finition")]
+         [Display(Name = "Finition :")]
          public int FinitionId { get; set; }
          public List<SelectListItem>? Finitions { get; set; }
 
          [Required]
          [DataType(DataType.Date)]
-         [Display(Name = "Date of Purchase")]
+         [Display(Name = "Date d'achat :")]
          public DateTime DateOfPurchase { get; set; }
 
          [Required]
          [DataType(DataType.Currency)]
-         [Display(Name = "Purchase Price")]
+         [Display(Name = "Prix d'achat :")]
          public decimal PurchasePrice { get; set; }
 
-         [Display(Name = "Requires Repair")]
-         public bool Repair { get; set; }
+         [Display(Name = "Réparations :")]
+         public string Repair { get; set; }
 
          [DataType(DataType.Currency)]
-         [Display(Name = "Repair Price")]
+         [Display(Name = "Coût des réparations :")]
          public decimal? RepairPrice { get; set; }
 
          [DataType(DataType.Date)]
-         [Display(Name = "Date of Availability for Sale")]
+         [Display(Name = "Disponible depuis le ")]
          public DateTime? DateOfAvailabilityForSale { get; set; }
 
          [DataType(DataType.Currency)]
-         [Display(Name = "Selling Price")]
+         [Display(Name = "Prix de vente :")]
          public decimal? SellingPrice { get; set; }
 
          [DataType(DataType.Date)]
-         [Display(Name = "Date of Sale")]
+         [Display(Name = "Vendu depuis le")]
          public DateTime? DateOfSale { get; set; }
 
-       /* public int YearId { get; set; }
-        public int BrandId { get; set; }
-        public int ModelId { get; set; }
-        public int FinitionId { get; set; }
-        public DateTime DateOfPurchase { get; set; }
-        public decimal PurchasePrice { get; set; }
-        public bool Repair { get; set; }
-        public decimal RepairPrice { get; set; }
-        public DateTime DateOfAvailabilityForSale { get; set; }
-        public decimal SellingPrice { get; set; }
-        public DateTime DateOfSale { get; set; }
-
-        public SelectList Brands { get; set; }
-        public SelectList Finitions { get; set; }
-        public SelectList Models { get; set; }
-        public SelectList Years { get; set; }*/
     }
 }

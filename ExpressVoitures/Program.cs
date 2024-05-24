@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ExpressVoitures.Models.Repositories;
+using ExpressVoitures.Models.Services;
 
 namespace ExpressVoitures
 {
@@ -26,6 +27,7 @@ namespace ExpressVoitures
             builder.Services.AddScoped<IModeleRepository, ModeleRepository>();
             builder.Services.AddScoped<IFinitionRepository, FinitionRepository>();
             builder.Services.AddScoped<IYearRepository, YearRepository>();
+            builder.Services.AddScoped<ICarsService, CarsService>();
 
             var app = builder.Build();
 

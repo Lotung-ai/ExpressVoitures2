@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ExpressVoitures.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDataBase : Migration
+    public partial class InitDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -84,7 +84,7 @@ namespace ExpressVoitures.Data.Migrations
                     FinitionId = table.Column<int>(type: "int", nullable: false),
                     DateOfPurchase = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Repair = table.Column<bool>(type: "bit", nullable: false),
+                    Repair = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RepairPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     DateOfAvailabilityForSale = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -192,7 +192,9 @@ namespace ExpressVoitures.Data.Migrations
                     { 1, 2, "Focus" },
                     { 2, 2, "Mustang" },
                     { 3, 3, "Corolla" },
-                    { 4, 3, "Camry" }
+                    { 4, 3, "Camry" },
+                    { 5, 1, "2" },
+                    { 6, 1, "3" }
                 });
 
             migrationBuilder.CreateIndex(

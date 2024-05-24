@@ -14,7 +14,7 @@ namespace ExpressVoitures.Models.Entities
         public int FinitionId { get; set; }
         public DateTime DateOfPurchase { get; set; }
         public decimal PurchasePrice { get; set; }
-        public bool Repair { get; set; }
+        public string? Repair { get; set; }
         public decimal? RepairPrice { get; set; }
         public DateTime? DateOfAvailabilityForSale { get; set; }
         public decimal? SellingPrice { get; set; }

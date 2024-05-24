@@ -9,6 +9,7 @@ using ExpressVoitures.Data;
 using ExpressVoitures.Models.Entities;
 using ExpressVoitures.Models.ViewModels;
 using ExpressVoitures.Models.Repositories;
+using ExpressVoitures.Models.Services;
 
 namespace ExpressVoitures.Controllers
 {
@@ -19,14 +20,16 @@ namespace ExpressVoitures.Controllers
         private readonly IModeleRepository _modeleRepository;
         private readonly IFinitionRepository _finitionRepository;
         private readonly IYearRepository _yearRepository;
+        private readonly ICarsService _carService;
 
-        public CarsController(ApplicationDbContext context, IBrandRepository brandRepository,IModeleRepository modeleRepository, IFinitionRepository finitionRepository, IYearRepository yearRepository)
+        public CarsController(ApplicationDbContext context, IBrandRepository brandRepository,IModeleRepository modeleRepository, IFinitionRepository finitionRepository, IYearRepository yearRepository, ICarsService carService)
         {
             _context = context;
             _brandRepository= brandRepository;
             _modeleRepository= modeleRepository;
             _finitionRepository= finitionRepository;
             _yearRepository= yearRepository;
+            _carService= carService;
         }
 
         // GET: Cars
@@ -63,25 +66,9 @@ namespace ExpressVoitures.Controllers
         {
 
             PopulateDropdownLists();
-            /*var brandsData = _brandRepository.GetBrands();
-            var carViewModel = new CarViewModel();
-            carViewModel.Brands = new List<SelectListItem>();
-            foreach (var brand in brandsData)
-            {
-                carViewModel.Brands.Add(new SelectListItem { Text = brand.Text, Value = brand.Value });
-            }
-            */
-             return View();
-           /* var viewModel = new CarViewModel
-            {
-                Brands = new SelectList(_brandRepository.GetBrands(), "Value", "Text"),
-                Finitions = new SelectList(_finitionRepository.GetFinitions(), "Value", "Text"),
-                Models = new SelectList(_modeleRepository.GetModels(), "Value", "Text"),
-                Years = new SelectList(_yearRepository.GetYears(), "Value", "Text")
-            };
 
-            return View(viewModel);*/
-            
+             return View();
+           
             
         }
         [HttpGet]
@@ -97,16 +84,32 @@ namespace ExpressVoitures.Controllers
 
             return Json(models);
         }
-        private void PopulateDropdownLists()
+           private void PopulateDropdownLists()
+            {
+                ViewData["BrandId"] = _brandRepository.GetBrands();
+
+                ViewData["FinitionId"] = _finitionRepository.GetFinitions();
+
+                //ViewData["ModelId"] = _modeleRepository.GetModels();
+
+                ViewData["YearId"] = _yearRepository.GetYears();
+            }
+       /* private void PopulateDropdownLists(CarViewModel carViewModel)
         {
-            ViewData["BrandId"] = _brandRepository.GetBrands();
+            ViewData["YearId"] = new SelectList(_yearRepository.GetYears(), "Id", "YearValue", carViewModel?.YearId);
+            ViewData["BrandId"] = new SelectList(_brandRepository.GetBrands(), "Id", "BrandName", carViewModel?.BrandId);
 
-            ViewData["FinitionId"] = _finitionRepository.GetFinitions();
+            if (carViewModel?.BrandId != null)
+            {
+                ViewData["ModelId"] = new SelectList(_modeleRepository.GetModelsByBrandId(carViewModel.BrandId), "Id", "Name", carViewModel.ModelId);
+            }
+            else
+            {
+                ViewData["ModelId"] = new SelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text");
+            }
 
-          //  ViewData["ModelId"] = _modeleRepository.GetModels();
-
-            ViewData["YearId"] = _yearRepository.GetYears();
-        }
+            ViewData["FinitionId"] = new SelectList(_finitionRepository.GetFinitions(), "Id", "Name", carViewModel?.FinitionId);
+        }*/
         // POST: Cars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -120,30 +123,11 @@ namespace ExpressVoitures.Controllers
                  await _context.SaveChangesAsync();
                  return RedirectToAction(nameof(Index));
              }
-             ViewData["BrandId"] = _brandRepository.GetBrands();
-
-             ViewData["FinitionId"] = _finitionRepository.GetFinitions();
-
-             ViewData["ModelId"] = _modeleRepository.GetModels();
-
-             ViewData["YearId"] = _yearRepository.GetYears();
-             return View(car);*/
+*/
             if (ModelState.IsValid)
             {
-                var car = new Car
-                {
-                    YearId = carViewModel.YearId,               
-                    BrandId = carViewModel.BrandId,
-                    ModelId = carViewModel.ModelId,
-                    FinitionId = carViewModel.FinitionId,
-                    DateOfPurchase = carViewModel.DateOfPurchase,
-                    PurchasePrice = carViewModel.PurchasePrice,
-                    Repair = carViewModel.Repair,
-                    RepairPrice = carViewModel.RepairPrice,
-                    DateOfAvailabilityForSale = carViewModel.DateOfAvailabilityForSale,
-                    SellingPrice = carViewModel.SellingPrice,
-                    DateOfSale = carViewModel.DateOfSale
-                };
+                var car = new Car();
+                car=_carService.MapToProductEntity(car, carViewModel);              
 
                 _context.Add(car);
                 await _context.SaveChangesAsync();
@@ -158,18 +142,41 @@ namespace ExpressVoitures.Controllers
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            /*  if (id == null)
+              {
+                  return NotFound();
+              }
+
+              var car = await _context.Cars.FindAsync(id);
+              var carViewModel=_carService.MapToCarViewModel(car);
+              if (car == null)
+              {
+                  return NotFound();
+              }
+              PopulateDropdownLists();
+              return View(carViewModel);*/
             if (id == null)
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars.FindAsync(id);
+            var car = await _context.Cars
+                .Include(c => c.Brand)  // Include related data if necessary
+                .Include(c => c.Modele) // Include related data if necessary
+                .Include(c => c.Finition) // Include related data if necessary
+                .Include(c => c.Year) // Include related data if necessary
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (car == null)
             {
                 return NotFound();
             }
+
+            var carViewModel = _carService.MapToCarViewModel(car);
+
             PopulateDropdownLists();
-            return View(car);
+
+            return View(carViewModel);
         }
 
         // POST: Cars/Edit/5
@@ -177,9 +184,9 @@ namespace ExpressVoitures.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,YearId,BrandId,ModelId,FinitionId,DateOfPurchase,PurchasePrice,Repair,RepairPrice,DateOfAvailabilityForSale,SellingPrice,DateOfSale")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,YearId,BrandId,ModelId,FinitionId,DateOfPurchase,PurchasePrice,Repair,RepairPrice,DateOfAvailabilityForSale,SellingPrice,DateOfSale")] CarViewModel carViewModel)
         {
-            if (id != car.Id)
+            if (id != carViewModel.Id)
             {
                 return NotFound();
             }
@@ -188,12 +195,19 @@ namespace ExpressVoitures.Controllers
             {
                 try
                 {
+                    var car = await _context.Cars.FindAsync(id);
+                    if (car == null)
+                    {
+                        return NotFound();
+                    }
+                    car = _carService.MapToProductEntity(car, carViewModel);
+
                     _context.Update(car);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CarExists(car.Id))
+                    if (!CarExists(carViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -207,7 +221,7 @@ namespace ExpressVoitures.Controllers
 
             PopulateDropdownLists();
 
-            return View(car);
+            return View(carViewModel);
         }
 
         // GET: Cars/Delete/5

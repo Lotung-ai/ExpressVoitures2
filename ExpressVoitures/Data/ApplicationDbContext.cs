@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using Microsoft.Data.SqlClient;
-using System.Data.Common;
 using System.Data;
 
 namespace ExpressVoitures.Data
@@ -106,8 +101,10 @@ namespace ExpressVoitures.Data
                 new Modele { Id = 1, Name = "Focus", BrandId = 2 },
                 new Modele { Id = 2, Name = "Mustang", BrandId = 2 },
                 new Modele { Id = 3, Name = "Corolla", BrandId = 3 },
-                new Modele { Id = 4, Name = "Camry", BrandId = 3 }
-            );
+                new Modele { Id = 4, Name = "Camry", BrandId = 3 },
+                new Modele { Id = 5, Name = "2", BrandId = 1 },
+                new Modele { Id = 6, Name = "3", BrandId = 1 }
+            ); 
         }
       
     }

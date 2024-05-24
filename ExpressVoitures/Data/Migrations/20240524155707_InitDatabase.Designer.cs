@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpressVoitures.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240523125757_InitDataBase")]
-    partial class InitDataBase
+    [Migration("20240524155707_InitDatabase")]
+    partial class InitDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,8 +98,9 @@ namespace ExpressVoitures.Data.Migrations
                     b.Property<decimal>("PurchasePrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("Repair")
-                        .HasColumnType("bit");
+                    b.Property<string>("Repair")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("RepairPrice")
                         .HasColumnType("decimal(18,2)");
@@ -207,6 +208,18 @@ namespace ExpressVoitures.Data.Migrations
                             Id = 4,
                             BrandId = 3,
                             Name = "Camry"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BrandId = 1,
+                            Name = "2"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BrandId = 1,
+                            Name = "3"
                         });
                 });
 

@@ -11,52 +11,52 @@ namespace ExpressVoitures.Models.ViewModels
         public int Id { get; set; }
 
          [Required]
-         [Display(Name = "Année :")]
+         [Display(Name = "YearId")]
          public int YearId { get; set; }
          public List<SelectListItem>? Years { get; set; }
 
          [Required]
-         [Display(Name = "Marque :")]
+         [Display(Name = "BrandId")]
          public int BrandId { get; set; }
         public List<SelectListItem>? Brands { get; set; }
 
          [Required]
-         [Display(Name = "Modèle :")]
+         [Display(Name = "ModelId")]
          public int ModelId { get; set; }
         public List<SelectListItem>? Models { get; set; }
 
          [Required]
-         [Display(Name = "Finition :")]
+         [Display(Name = "FinitionId")]
          public int FinitionId { get; set; }
          public List<SelectListItem>? Finitions { get; set; }
 
          [Required]
          [DataType(DataType.Date)]
-         [Display(Name = "Date d'achat :")]
+         [Display(Name = "DateOfPurchase")]
          public DateTime DateOfPurchase { get; set; }
 
          [Required]
          [DataType(DataType.Currency)]
-         [Display(Name = "Prix d'achat :")]
+         [Display(Name = "PurchasePrice")]
          public decimal PurchasePrice { get; set; }
 
-         [Display(Name = "Réparations :")]
+         [Display(Name = "Repair")]
          public string Repair { get; set; }
 
          [DataType(DataType.Currency)]
-         [Display(Name = "Coût des réparations :")]
+         [Display(Name = "RepairPrice")]
          public decimal? RepairPrice { get; set; }
 
          [DataType(DataType.Date)]
-         [Display(Name = "Disponible depuis le ")]
+         [Display(Name = "DateOfAvailabilityForSale")]
          public DateTime? DateOfAvailabilityForSale { get; set; }
 
          [DataType(DataType.Currency)]
-         [Display(Name = "Prix de vente :")]
+         [Display(Name = "SellingPrice")]
          public decimal? SellingPrice { get; set; }
 
          [DataType(DataType.Date)]
-         [Display(Name = "Vendu depuis le")]
+         [Display(Name = "DateOfSale")]
          public DateTime? DateOfSale { get; set; }
 
     }

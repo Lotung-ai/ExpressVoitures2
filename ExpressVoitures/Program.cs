@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ExpressVoitures.Models.Repositories;
 using ExpressVoitures.Models.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
+using System.Globalization;
 
 namespace ExpressVoitures
 {
@@ -21,6 +24,26 @@ namespace ExpressVoitures
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddControllersWithViews()
+               .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+               .AddDataAnnotationsLocalization();
+
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("fr-FR"),
+                };
+
+
+
+                options.DefaultRequestCulture = new RequestCulture("fr-FR");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            }); 
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
@@ -50,6 +73,9 @@ namespace ExpressVoitures
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            // Use localization
+            app.UseRequestLocalization();
 
             app.Run();
         }

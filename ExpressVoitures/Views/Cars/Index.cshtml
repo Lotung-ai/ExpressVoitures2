@@ -1,8 +1,14 @@
-﻿@model IEnumerable<ExpressVoitures.Models.Entities.Car>
+﻿@using Microsoft.Extensions.Localization
+﻿@using ExpressVoitures.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ExpressVoitures.Resources
+@inject IViewLocalizer Localizer
+@model IEnumerable<ExpressVoitures.Models.Entities.Car>
 
 @{
     Layout = "_Layout";
 }
+
 
 <!DOCTYPE html>
 
@@ -19,37 +25,37 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfPurchase)
+                    @Localizer["DateOfPurchase"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PurchasePrice)
+                    @Localizer["PurchasePrice"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Repair)
+                    @Localizer["Repair"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.RepairPrice)
+                    @Localizer["RepairPrice"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfAvailabilityForSale)
+                    @Localizer["DateOfAvailabilityForSale"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SellingPrice)
+                    @Localizer["SellingPrice"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfSale)
+                    @Localizer["DateOfSale"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Brand.Name)
+                    @Localizer["BrandId"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Modele.Name)
+                    @Localizer["ModelId"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Year.Value)
+                    @Localizer["YearId"]
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Finition.Name)
+                    @Localizer["FinitionId"]
                 </th>
                 <th></th>
             </tr>

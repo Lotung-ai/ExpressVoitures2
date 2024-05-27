@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressVoitures.Resources.Views {
+namespace ExpressVoitures.Resources.Views.Cars {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ExpressVoitures.Resources.Views {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpressVoitures.Resources.Views.Index", typeof(Index).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpressVoitures.Resources.Views.Cars.Index", typeof(Index).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Marque.
         /// </summary>
         public static string BrandId {
             get {
@@ -70,25 +70,25 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Disponible depuis le.
         /// </summary>
-        public static string DateOdAvailabilityForSale {
+        public static string DateOfAvailabilityForSale {
             get {
-                return ResourceManager.GetString("DateOdAvailabilityForSale", resourceCulture);
+                return ResourceManager.GetString("DateOfAvailabilityForSale", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Date d&apos;achat.
         /// </summary>
-        public static string DateOdPurchase {
+        public static string DateOfPurchase {
             get {
-                return ResourceManager.GetString("DateOdPurchase", resourceCulture);
+                return ResourceManager.GetString("DateOfPurchase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Vendu depuis le.
         /// </summary>
         public static string DateOfSale {
             get {
@@ -97,7 +97,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Finition.
         /// </summary>
         public static string FinitionId {
             get {
@@ -106,7 +106,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Modele.
         /// </summary>
         public static string ModelId {
             get {
@@ -115,7 +115,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Prix d&apos;achat.
         /// </summary>
         public static string PurchasePrice {
             get {
@@ -124,7 +124,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Réparations.
         /// </summary>
         public static string Repair {
             get {
@@ -133,7 +133,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Coût des réparations.
         /// </summary>
         public static string RepairPrice {
             get {
@@ -142,7 +142,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Prix de vente.
         /// </summary>
         public static string SellingPrice {
             get {
@@ -151,7 +151,7 @@ namespace ExpressVoitures.Resources.Views {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Année.
         /// </summary>
         public static string YearId {
             get {

@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @model ExpressVoitures.Models.ViewModels.CarViewModel
-
 @{
     Layout = "_Layout";
 }
@@ -27,52 +26,52 @@
                     <span asp-validation-for="YearId" class="text-danger"></span>
                 </div>
             <div class="form-group">
-                <label asp-for="BrandId" class="control-label">Marque</label>
+                    <label asp-for="BrandId" class="control-label">@Localizer["BrandId"]</label>
                     <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
                     <span asp-validation-for="BrandId" class="text-danger"></span>
             </div>
                 <div class="form-group">
-                    <label asp-for="ModelId" class="control-label">Modèle</label>
+                    <label asp-for="ModelId" class="control-label">@Localizer["ModelId"]</label>
                     <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelId"></select>
                     <span asp-validation-for="ModelId" class="text-danger"></span>
                 </div>
             <div class="form-group">
-                <label asp-for="FinitionId" class="control-label">Finition</label>
+                    <label asp-for="FinitionId" class="control-label">@Localizer["FinitionId"]</label>
                     <select asp-for="FinitionId" class="form-control" asp-items="ViewBag.FinitionId"></select>
                     <span asp-validation-for="FinitionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfPurchase" class="control-label">Date d'achat</label>
+                    <label asp-for="DateOfPurchase" class="control-label">@Localizer["DateOfPurchase"]</label>
                 <input asp-for="DateOfPurchase" class="form-control" />
                 <span asp-validation-for="DateOfPurchase" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PurchasePrice" class="control-label">Prix d'achat</label>
+                    <label asp-for="PurchasePrice" class="control-label">@Localizer["PurchasePrice"]</label>
                     <input asp-for="PurchasePrice" class="form-control" type="number" step="0.01" />
                 <span asp-validation-for="PurchasePrice" class="text-danger"></span>
             </div>
                 <div class="form-group">
-                    <label asp-for="Repair" class="control-label">Réparations :</label>
+                    <label asp-for="Repair" class="control-label">@Localizer["Repair"]</label>
                     <textarea asp-for="Repair" class="form-control"></textarea>
                     <span asp-validation-for="Repair" class="text-danger"></span>
                 </div>
             <div class="form-group">
-                <label asp-for="RepairPrice" class="control-label">Frais de réparation</label>
+                    <label asp-for="RepairPrice" class="control-label">@Localizer["RepairPrice"]</label>
                     <input asp-for="RepairPrice" class="form-control" type="number" step="0.01" />
                 <span asp-validation-for="RepairPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfAvailabilityForSale" class="control-label">Disponible depuis</label>
+                    <label asp-for="DateOfAvailabilityForSale" class="control-label">@Localizer["DateOfAvailabilityForSale"]</label>
                 <input asp-for="DateOfAvailabilityForSale" class="form-control" />
                 <span asp-validation-for="DateOfAvailabilityForSale" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellingPrice" class="control-label">Prix de vente</label>
+                    <label asp-for="SellingPrice" class="control-label">@Localizer["SellingPrice"]</label>
                     <input asp-for="SellingPrice" class="form-control" type="number" step="0.01" />
                 <span asp-validation-for="SellingPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfSale" class="control-label">Vendu le </label>
+                    <label asp-for="DateOfSale" class="control-label">@Localizer["DateOfSale"]</label>
                 <input asp-for="DateOfSale" class="form-control" />
                 <span asp-validation-for="DateOfSale" class="text-danger"></span>
             </div>

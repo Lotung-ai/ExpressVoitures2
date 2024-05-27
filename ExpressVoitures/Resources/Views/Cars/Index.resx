@@ -120,10 +120,13 @@
   <data name="BrandId" xml:space="preserve">
     <value>Marque</value>
   </data>
-  <data name="DateOdAvailabilityForSale" xml:space="preserve">
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="DateOfAvailabilityForSale" xml:space="preserve">
     <value>Disponible depuis le</value>
   </data>
-  <data name="DateOdPurchase" xml:space="preserve">
+  <data name="DateOfPurchase" xml:space="preserve">
     <value>Date d'achat</value>
   </data>
   <data name="DateOfSale" xml:space="preserve">

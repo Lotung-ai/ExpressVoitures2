@@ -1,7 +1,4 @@
-﻿@using Microsoft.Extensions.Localization
-﻿@using ExpressVoitures.Models.ViewModels
-@using Microsoft.AspNetCore.Mvc.Localization
-@using ExpressVoitures.Resources
+﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @model IEnumerable<ExpressVoitures.Models.Entities.Car>
 
@@ -19,7 +16,7 @@
 </head>
 <body>
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create"> @Localizer["Create"]</a>
     </p>
     <table class="table">
         <thead>
@@ -57,7 +54,7 @@
                 <th>
                     @Localizer["FinitionId"]
                 </th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>

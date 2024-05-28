@@ -84,7 +84,7 @@ namespace ExpressVoitures.Data.Migrations
                     FinitionId = table.Column<int>(type: "int", nullable: false),
                     DateOfPurchase = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Repair = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Repair = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RepairPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     DateOfAvailabilityForSale = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),

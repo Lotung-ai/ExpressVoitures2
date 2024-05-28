@@ -1,4 +1,5 @@
 using ExpressVoitures.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,6 +13,7 @@ namespace ExpressVoitures.Controllers
         {
             _logger = logger;
         }
+       
 
         public IActionResult Index()
         {

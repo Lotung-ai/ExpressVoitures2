@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpressVoitures.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240524155707_InitDatabase")]
+    [Migration("20240528112510_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -99,7 +99,6 @@ namespace ExpressVoitures.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Repair")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("RepairPrice")

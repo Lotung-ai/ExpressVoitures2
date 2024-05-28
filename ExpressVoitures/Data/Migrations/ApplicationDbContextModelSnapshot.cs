@@ -36,7 +36,7 @@ namespace ExpressVoitures.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
 
                     b.HasData(
                         new
@@ -96,7 +96,6 @@ namespace ExpressVoitures.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Repair")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("RepairPrice")
@@ -118,7 +117,7 @@ namespace ExpressVoitures.Data.Migrations
 
                     b.HasIndex("YearId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("ExpressVoitures.Models.Entities.Finition", b =>
@@ -135,7 +134,7 @@ namespace ExpressVoitures.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Finitions");
+                    b.ToTable("Finitions", (string)null);
 
                     b.HasData(
                         new
@@ -179,7 +178,7 @@ namespace ExpressVoitures.Data.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Modeles");
+                    b.ToTable("Modeles", (string)null);
 
                     b.HasData(
                         new
@@ -233,7 +232,7 @@ namespace ExpressVoitures.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Years");
+                    b.ToTable("Years", (string)null);
 
                     b.HasData(
                         new

@@ -10,6 +10,7 @@ using ExpressVoitures.Models.Entities;
 using ExpressVoitures.Models.ViewModels;
 using ExpressVoitures.Models.Repositories;
 using ExpressVoitures.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExpressVoitures.Controllers
 {
@@ -62,6 +63,7 @@ namespace ExpressVoitures.Controllers
         }
 
         // GET: Cars/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
 
@@ -94,36 +96,17 @@ namespace ExpressVoitures.Controllers
 
                 ViewData["YearId"] = _yearRepository.GetYears();
             }
-       /* private void PopulateDropdownLists(CarViewModel carViewModel)
-        {
-            ViewData["YearId"] = new SelectList(_yearRepository.GetYears(), "Id", "YearValue", carViewModel?.YearId);
-            ViewData["BrandId"] = new SelectList(_brandRepository.GetBrands(), "Id", "BrandName", carViewModel?.BrandId);
-
-            if (carViewModel?.BrandId != null)
-            {
-                ViewData["ModelId"] = new SelectList(_modeleRepository.GetModelsByBrandId(carViewModel.BrandId), "Id", "Name", carViewModel.ModelId);
-            }
-            else
-            {
-                ViewData["ModelId"] = new SelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text");
-            }
-
-            ViewData["FinitionId"] = new SelectList(_finitionRepository.GetFinitions(), "Id", "Name", carViewModel?.FinitionId);
-        }*/
+      
         // POST: Cars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,YearId,BrandId,ModelId,FinitionId,DateOfPurchase,PurchasePrice,Repair,RepairPrice,DateOfAvailabilityForSale,SellingPrice,DateOfSale")] CarViewModel carViewModel)
         {
-            /* if (ModelState.IsValid)
-             {
-                 _context.Add(car);
-                 await _context.SaveChangesAsync();
-                 return RedirectToAction(nameof(Index));
-             }
-*/
+  
+
             if (ModelState.IsValid)
             {
                 var car = new Car();
@@ -140,21 +123,10 @@ namespace ExpressVoitures.Controllers
         }
 
         // GET: Cars/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
-            /*  if (id == null)
-              {
-                  return NotFound();
-              }
 
-              var car = await _context.Cars.FindAsync(id);
-              var carViewModel=_carService.MapToCarViewModel(car);
-              if (car == null)
-              {
-                  return NotFound();
-              }
-              PopulateDropdownLists();
-              return View(carViewModel);*/
             if (id == null)
             {
                 return NotFound();
@@ -184,6 +156,7 @@ namespace ExpressVoitures.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,YearId,BrandId,ModelId,FinitionId,DateOfPurchase,PurchasePrice,Repair,RepairPrice,DateOfAvailabilityForSale,SellingPrice,DateOfSale")] CarViewModel carViewModel)
         {
             if (id != carViewModel.Id)
@@ -225,6 +198,7 @@ namespace ExpressVoitures.Controllers
         }
 
         // GET: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -249,6 +223,7 @@ namespace ExpressVoitures.Controllers
         // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var car = await _context.Cars.FindAsync(id);

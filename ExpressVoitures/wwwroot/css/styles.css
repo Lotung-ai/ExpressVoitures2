@@ -1,0 +1,26 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+.hero-image {
+    width: 100%;
+    background-image: url('../images/chiron_accueil.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+

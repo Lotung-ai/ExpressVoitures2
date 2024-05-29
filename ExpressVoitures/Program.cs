@@ -69,7 +69,7 @@ namespace ExpressVoitures
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=IndexProto}/{id?}");
             app.MapRazorPages();
 
             // Generate password hash for admin

@@ -20,12 +20,12 @@ namespace ExpressVoitures.Controllers
         }
 
         // GET: Cars
-        public async Task<IActionResult> IndexProto()
+        public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Cars.Include(c => c.Brand).Include(c => c.Finition).Include(c => c.Modele).Include(c => c.Year);
             return View(await applicationDbContext.ToListAsync());
         }
-        public IActionResult Index()
+        public IActionResult IndexOld()
         {
             return View();
         }

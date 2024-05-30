@@ -1,8 +1,97 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IEnumerable<ExpressVoitures.Models.Entities.Car>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Newsreader|Libre+Baskerville|Inter&display=swap" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <title>Express Voitures</title>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-image">
+        <div class="hero-text">
+            <h1 class="display-4">Bienvenue chez Express Voitures</h1>
+            <a class="btn btn-outline-light" href="#">Voir la liste des voitures</a>
+        </div>
+    </section>
+
+    <section class="container mt-5">
+ 
+        <h2 class="mb-4">Nouveautés</h2>
+ 
+        <div class="row">
+            @{
+                @if (Model != null && Model.Any())
+                {
+                var limitedNouveautes = 0;
+                foreach (var item in Model)
+                {
+                    if (limitedNouveautes >= 2)
+                    {
+                        break;
+                    }
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Brand?.Name @item.Modele?.Name</h5>
+                                    <p class="card-text">@Localizer["YearId"] @Html.DisplayFor(modelItem => item.Year.Value)</p>
+                                    <p class="card-text">@Localizer["FinitionId"] @Html.DisplayFor(modelItem => item.Finition.Name)</p>
+                                    <p class="card-text">@Localizer["DateOfPurchase"] @Html.DisplayFor(modelItem => item.DateOfPurchase)</p>
+                                    <p class="card-text">@Localizer["PurchasePrice"] @Html.DisplayFor(modelItem => item.PurchasePrice) euros</p>
+                                    @if (item.Repair != null)
+                                    {
+                                        <p class="card-text">@Localizer["Repair"] @Html.DisplayFor(modelItem => item.Repair)</p>
+                                    }
+                                    @if (item.RepairPrice != null)
+                                    {
+                                        <p class="card-text">@Localizer["RepairPrice"] @Html.DisplayFor(modelItem => item.RepairPrice) euros</p>
+                                    }
+                                    @if (item.DateOfAvailabilityForSale != null)
+                                    {
+                                        <p class="card-text">@Localizer["DateOfAvailabilityForSale"] @Html.DisplayFor(modelItem => item.DateOfAvailabilityForSale)</p>
+                                    }
+                                    @if (item.SellingPrice != null)
+                                    {
+                                        <p class="card-text">@Localizer["SellingPrice"] @Html.DisplayFor(modelItem => item.SellingPrice) euros</p>
+                                    }
+                                    @if (item.DateOfSale != null)
+                                    {
+                                        <p class="card-text">@Localizer["PurchasePrice"] @Html.DisplayFor(modelItem => item.DateOfSale)</p>
+                                    }
+
+                             
+                            </div>
+                        </div>
+                    </div>
+                    limitedNouveautes++;
+                }
+                }
+            
+            else
+            {
+            <p>Aucune voiture n'est disponible pour le moment.</p>
+            }
+            }
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="container mt-5">
+        <h2>Ce qu’il faut savoir</h2>
+        <p class="home_paragraphe">Nos voitures sont achetées dans des ventes aux enchères par des professionnels agréés.</p>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

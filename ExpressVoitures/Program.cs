@@ -6,6 +6,7 @@ using System.Globalization;
 using ExpressVoitures.Models.Repositories;
 using ExpressVoitures.Models.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.Hosting;
 
 namespace ExpressVoitures
 {
@@ -69,23 +70,23 @@ namespace ExpressVoitures
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=IndexProto}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             // Generate password hash for admin
             using (var scope = app.Services.CreateScope())
             {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-
-                var password = "Admin@123456";
-                var adminUser = new IdentityUser { UserName = "admin@example.com", Email = "admin@example.com" };
-                var passwordHash = userManager.PasswordHasher.HashPassword(adminUser, password);
-
-                Console.WriteLine($"Password hash: {passwordHash}");
-
-                // Initialize roles and admin user
                 var services = scope.ServiceProvider;
-                await SeedData.Initialize(services);
+                try
+                {
+                    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+                    await SeedData.Initialize(services, userManager);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB.");
+                }
             }
 
             // Use localization

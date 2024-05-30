@@ -12,12 +12,15 @@ namespace ExpressVoitures.Models.Entities
         public int BrandId { get; set; }
         public int ModelId { get; set; }
         public int FinitionId { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DateOfPurchase { get; set; }
         public decimal PurchasePrice { get; set; }
         public string? Repair { get; set; }
         public decimal? RepairPrice { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? DateOfAvailabilityForSale { get; set; }
         public decimal? SellingPrice { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? DateOfSale { get; set; }
 
         public virtual Brand Brand { get; set; }

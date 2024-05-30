@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,13 +24,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="btn btn-outline-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="btn btn-outline-light mx-1" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Index"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-outline-light" asp-area="" asp-controller="Home" asp-action="Cars">Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="btn btn-outline-light mx-1" asp-area="" asp-controller="Home" asp-action="Cars">@Localizer["Cars"]</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -42,9 +41,14 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - ExpressVoitures - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-dark text-white py-3 mt-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="mb-0">© 2024 Express Voitures</p>
+            <div class="d-flex">
+                <a class="btn btn-outline-light mx-1" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Index"]</a>
+                <a class="btn btn-outline-light mx-1" asp-area="" asp-controller="Home" asp-action="Cars">@Localizer["Cars"]</a>
+                <a class="btn btn-outline-light mx-1" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

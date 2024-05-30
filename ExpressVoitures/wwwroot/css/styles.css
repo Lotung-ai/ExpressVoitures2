@@ -20,7 +20,12 @@ body {
 }
 
 .hero-text {
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
+    box-sizing: border-box; 
+}
+.home_paragraphe {
+    font-size: 20px;
 }
 

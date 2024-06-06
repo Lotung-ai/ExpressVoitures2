@@ -68,7 +68,7 @@ namespace ExpressVoitures.Data
                 .HasForeignKey(c => c.FinitionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // modelBuilder.Entity<Year>().HasData(new Year() { Value = 1990 ,Id=1});
+         
             // Ajouter les années de 1990 à aujourd'hui
             var currentYear = DateTime.Now.Year;
             var years = new List<Year>();

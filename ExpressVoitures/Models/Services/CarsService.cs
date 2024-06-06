@@ -1,8 +1,6 @@
-﻿using ExpressVoitures.Data;
+﻿
 using ExpressVoitures.Models.Entities;
 using ExpressVoitures.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace ExpressVoitures.Models.Services
 {
@@ -28,7 +26,7 @@ namespace ExpressVoitures.Models.Services
         }
         public CarViewModel MapToCarViewModel(Car car)
         {
-            CarViewModel carViewModel = new CarViewModel
+            var carViewModel = new CarViewModel
             {
 
                 YearId = car.YearId,
